@@ -1,0 +1,169 @@
+.App {
+  text-align: start;
+}
+
+body {
+  background-color: white;
+}
+
+.input[type=text],input[type=password]
+{
+  border: 2px solid gray;
+  border-bottom: 1px solid lightgray;
+}
+
+.font-size {
+  font-size: 10px;
+  
+  margin-top: 6px;
+  margin-bottom: 7px;
+  color: white;
+  font-style: inherit;
+  
+  
+}
+
+
+.menu {
+  background-color: brown;
+  width: 1250px;
+  height: 60px;
+  display: flex;
+  padding: 0 40px;
+  position: relative;
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+/* .container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  padding-bottom: 100px;
+  margin-left: 115px;
+
+} */
+
+.outline {
+  margin-left: 60px;
+  margin-right: 60px;
+  width: 1250px;
+  height:700%;
+  border: 1px solid gray;
+}
+.book-outline {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+border: 1px solid gray;
+margin-left: 10px;
+margin-right: 10px;
+}
+
+.books{
+  display: 'flex'; 
+  flex-direction: row;
+  flex-wrap:'wrap'; 
+  margin-left: '90px';
+  margin-right: '90px'; 
+}
+
+.flex-container-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-container-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.box {
+  display: block;
+  position: absolute;
+  width: 628px;
+  height: 608px;
+  flex-direction: column;
+}
+
+.image {
+  
+  margin-right: 40px;
+  margin-left: 40px;
+  position: absolute;
+  overflow: hidden;
+  
+}
+
+
+
+/* .footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: brown;
+  color: white;
+  height: 50px;
+} */
+
+.btn-style-remove {
+  margin-left: 20px;
+  background-color: white;
+  border: black;
+}
+
+.btn-style-count {
+  margin-left: 135px;
+}
+
+.placeorder-btn {
+  margin-left: 780px;
+  background-color: rgb(55, 0, 255);
+  color: white;
+  margin-bottom: 10px;
+}
+
+.customer{
+  margin-top: 0px;
+  margin-right: 500px;
+  margin-bottom: 5px;
+  margin-left: 29px;
+  background-color: white;
+  border: black;
+}
+
+.order-summary {
+  margin-right: 507px;
+  margin-top: 0px;
+  margin-left: 29px;
+  background-color: white;
+  border: black;
+  margin-bottom: 5px;
+}
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.cartList {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding-right: 5px;
+  padding-left: 5px;
+  margin: 15px;
+  padding: 20px;
+}
+
+
+
+
