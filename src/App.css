@@ -6,6 +6,15 @@ body {
   background-color: white;
 }
 
+
+.NavButtons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 50px;
+}
+
+
 .input[type=text],input[type=password]
 {
   border: 2px solid gray;
@@ -30,9 +39,11 @@ body {
   height: 60px;
   display: flex;
   padding: 0 40px;
-  position: relative;
+ 
   margin-left: 60px;
   margin-right: 60px;
+  text-decoration: none;
+  
 }
 
 /* .container {
@@ -164,6 +175,175 @@ margin-right: 10px;
   padding: 20px;
 }
 
+.style-number-text {
+  margin-left: 11px;
+  width: 201px;
+  height: 30px;
+  margin-right: 0px;
+}
+.style-locality-text {
+  
+  width: 200px;
+  height: 30px;
+  margin-right: 0px;
+}
+
+.style-address-text {
+  margin-right: 13px;
+  margin-left: 61px;
+  margin-top: 5px;
+  width: 412px;
+  height: 50px;
+}
+
+.style-pincode-text {
+  margin-left: 61px;
+  margin-right: 13px;
+  margin-top: 5px;
+  width: 200px;
+  height: 30px;
+}
+
+.style-type-text {
+  margin-bottom: 10px;
+}
+
+.style-name-text {
+  height: 30px;
+  width: 200px;
+  margin-left: 61px;
+}
+
+.radio {
+  margin-top: 10px;
+}
+
+.btn-style-custom {
+  margin-top: 15px;
+  margin-bottom: 12px;
+  margin-left: 34px;
+  background-color: white;
+  border: white;
+  width: 150px;
+}
+
+.cart-outline {
+  margin-left: '200px';
+  margin-right: '200px';
+  margin-top: '20px'; 
+  margin-bottom: '20px';
+  outline-style: 'groove';
+  outline-width: 'thin'; 
+}
+
+.subtraction-btn {
+  width: '25px';
+  margin-left: '4px';
+  border-radius: '25px';
+
+}
 
 
+.FormCenter {
+  margin-bottom: 100px;
+}
 
+.FormTitle {
+  color: #707C8B;
+  font-weight: 300;
+  margin-bottom: 50px;
+}
+
+.FormTitle__Link {
+  color: #707C8B;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.7em;
+  margin: 0 10px;
+  padding-bottom: 5px;
+}
+
+.FormTitle__Link:first-child {
+  margin-left: 0;
+}
+
+.FormTitle__Link--Active {
+  color: brown;
+  border-bottom: 1px solid #199087;
+}
+
+.FormField {
+  margin-bottom: 40px;
+}
+
+.FormField__Label {
+  display: block;
+  text-transform: uppercase;
+  font-size: .9em;
+  color: brown;
+}
+.FormField__Input {
+  width: 85%;
+  background-color: transparent;
+  border: none;
+  color: white;
+  outline: none;
+  border-bottom: 1px solid #445366;
+  font-size: 1em;
+  font-weight: 300;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+
+.FormField__Input::placeholder {
+  color: #616E7F;
+}
+
+.FormField__Button {
+  background-color: brown;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  padding: 15px 70px;
+  font-size: .8em;
+  font-weight: 500;
+}
+
+.FormField__Link {
+  color: #66707D;
+  text-decoration: none;
+  display: inline-block;
+  border-bottom: 1.5px solid #225E62;
+  padding-bottom: 5px;
+}
+
+.FormField__CheckboxLabel {
+  color: #646F7D;
+  font-size: .9em; 
+}
+
+.FormField__Checkbox {
+  position: relative;
+  top: 1.5px;
+}
+
+.FormField__TermsLink {
+  color: white;
+  border-bottom: 1px solid #199087;
+  text-decoration: none;
+  display: inline-block;
+  padding-bottom: 2px;
+  margin-left: 5px;
+}
+
+@media all and (min-width: 480px) {
+  .Login {
+    padding: 60px 0;
+  }
+
+  .Login form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+}
