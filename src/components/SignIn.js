@@ -1,51 +1,116 @@
-import React, { useState } from "react";
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import { Link } from 'react-router-dom';
-import Avatar from '@material-ui/core/Avatar';
+// import React, { Component } from "react";
+// //import { Button } from "react-bootstrap";
+// import { Link } from 'react-router-dom';
+// import Avatar from '@material-ui/core/Avatar';
+// import HomeDataLayer from '../DataLayer/HomeDataLayer';
 
-export default function SignIn() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+// var data = new HomeDataLayer();
 
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
-  }
+// export default class SignIn extends Component {
+//   constructor(props) {
+//     super(props)
+//     this.state = {
+//       username: '',
+//       password: ''
+//     }
+//   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
+//   handleChangeUserName = (e) => {
+//      this.setState({
+//       username: e.target.value
+//     })
+//   }
 
-  return (
-    <div className="Login">
-      <Avatar src="/broken-image.jpg" style={{marginLeft:'630px'}}/>
-      <h4 style={{marginLeft:'600px'}}>SignIn</h4>
-      <form onSubmit={handleSubmit}>
-        <FormGroup controlId="email" bsSize="large">
-          <ControlLabel>Email</ControlLabel>
-          <FormControl
-            autoFocus
-            type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup controlId="password" bsSize="large">
-          <ControlLabel>Password</ControlLabel>
-          <FormControl
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            type="password"
-          />
-        </FormGroup>
-        <Link to="/" >
-        <Button block bsSize="large" disabled={!validateForm()} type="submit">
-          SignIn
-        </Button>
-        </Link>
-        <a href="/SignUp">forgot password?</a><br></br>
+//   handleChangePassword = (e) => {
+//     this.setState({
+//       password: e.target.value
+//     })
+//   }
+//   handleSignInOfUser = () => {
+//     data.signInData(this.state.username, this.state.password)
+//     console.log(localStorage.getItem("token"))
+//   }
+ 
 
+//   render() {
+//   return (
+//     <div className="Login">
+//       <Avatar src="/broken-image.jpg" style={{marginLeft:'630px'}}/>
+//       <h4 style={{marginLeft:'600px'}}>SignIn</h4>
+//       <div>
+//       <input style={{padding:'10px', margin:'5px'}} placeholder="Username" onChange={(e)=> this.handleChangeUserName(e)}></input>
+//         <input placeholder="Password" onChange={(e) => this.handleChangePassword(e)}></input>
+//         </div>
+//         <div>
+//         <Link to="/Home">
+//                   <button className="FormField__Button mr-20" onClick={this.handleSignInOfUser}>Sign In</button> 
+//                   </Link>
+//         {/* <Link to="/Home" >
+//         <Button block bsSize="large"  type="submit">
+//           SignIn
+//         </Button>
+//         </Link> */}
+//         <a href="/ForgetPassword">forgot password?</a><br></br>
+// </div>
         
-      </form>
-    </div>
-  );
+     
+//     </div>
+//   );
+// }
+// }
+
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
+import HomeDataLayer from '../DataLayer/HomeDataLayer';
+
+var data = new HomeDataLayer();
+
+export class SignIn extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            username: '',
+            password: ''
+        }
+    }
+
+    handleChangeUsername = (e) => {
+        this.setState({
+            username: e.target.value
+        })
+    }
+
+    handleChangePassword = (e) => {
+        this.setState({
+            password: e.target.value
+        })
+    }
+
+    handleChangeLogin = () => {
+        data.signInData(this.state.username, this.state.password)
+        console.log(localStorage.getItem("token"))
+    }
+
+    render() {
+        return (
+            <div className="login-box">
+                <h2>Welcome to BookStore</h2>
+                <div style={{ padding: "10px", display: "flex", flexDirection: "column" }}>
+                    <input style={{ padding: "10px", margin: "5px" }} placeholder="Username" onChange={(e) => this.handleChangeUsername(e)}></input>
+                    <input style={{ padding: "10px", margin: "5px" }} placeholder="Password" type="password" onChange={(e) => this.handleChangePassword(e)}></input>
+                </div>
+                <div>
+                    <Link to="/Home" >
+                        <button className="button" onClick={this.handleChangeLogin}>Login</button>
+                    </Link>
+                </div>
+                <div style={{ padding: "10px", margin:"5px", display: "flex", flexDirection: "column", fontSize:"20px", justifyContent:"center", alignItems:"center" }}>
+                     <a style={{color:"black", textDecoration:"none",  padding: "5px"}} href="/SignUpForm">Create account instead!</a>
+                     <a style={{color:"black", textDecoration:"none"}} href="/ForgetPassword">Forgot password?</a> 
+                </div>
+            </div>
+        )
+    }
 }
+
+export default SignIn;

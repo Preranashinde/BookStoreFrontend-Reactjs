@@ -4,7 +4,9 @@ class CustomerDetails extends Component {
   constructor() {
     super();
     this.state = {
-      name: ""
+      name: "",
+      toggle: false,
+      summaryToggle: false
     };
     this.onValueChange = this.onValueChange.bind(this);
     this.formContinue = this.formContinue.bind(this);
@@ -21,6 +23,12 @@ formContinue(event) {
     console.log(this.state.selectedOption)
 }
 
+handleChangeEnableOrderSummary = () => {
+  this.setState({
+      summaryToggle: true
+  })
+}
+
 render() {
     return (
        <form onSubmit={this.formContinue}> 
@@ -30,25 +38,25 @@ render() {
           {/* <input  */}
                 
                 <textarea className="style-name-text"
+                
                 type="text" 
                 placeholder="Name" 
-                />
-              <textarea className="style-number-text"
-                type="text" 
-                placeholder="    Phone Number"  
-                />
+                required/>
+             
                 </div>
                 
             <div>
                
     	        <textarea className="style-pincode-text"
-                type="text" 
+                type="number" 
                 placeholder="    Pincode" 
-                />
+                maxLength='6' 
+                pattern="^[1-9][0-9]{5}$"  
+                required />
                 <textarea className="style-locality-text"
                 type="text" 
                 placeholder="    Locality" 
-                />
+                required />
             </div>
             <div>
                 <textarea className="style-address-text"
@@ -62,11 +70,11 @@ render() {
     	  <textarea className="style-pincode-text"
           type="text" 
           placeholder="    City/Town" 
-        />
+          required />
         <textarea className="style-locality-text"
           type="text" 
           placeholder="   Landmark" 
-        />
+          required />
         </div>
 
         <div className="radio">
@@ -104,9 +112,11 @@ render() {
       <div>
           <span></span>
           <div style={{marginLeft:'120px', marginBottom:'20px' }}>
-            Selected option is : {this.state.selectedOption}   
-            <button style={{ marginLeft: '680px', backgroundColor: '#4863A0', color: 'white', width: '140px', height: '37px', fontWeight: 'bold' }}>CONTINUE</button>
-          
+            Selected option is : {this.state.selectedOption} 
+            
+           
+           
+            
           </div>
       </div>
       </div> 

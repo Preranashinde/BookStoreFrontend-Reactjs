@@ -1,6 +1,5 @@
-import React from 'react';
-import { Component } from 'react';
-import HomeDataLayer from './HomeDataLayer'
+import React, { Component } from 'react';
+import HomeDataLayer from '../DataLayer/HomeDataLayer'
 
 var data = new HomeDataLayer();
 
@@ -25,7 +24,9 @@ class Search extends Component {
     handleChangeSearchText = async(e) => {
        await this.setState({
             searchText: e.target.value
-       })
+        })
+        localStorage.setItem('input', this.state.searchText)
+        console.log("local", localStorage.getItem('input'))
         if (this.state.searchText !== '') {
             data.fetchAllSearchBook(this.state.searchText, response => {
                 console.log(this.state.searchText)

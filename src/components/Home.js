@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import HomeDataLayer from '../DataLayer/HomeDataLayer'
-//import Select from '@material-ui/core/Select';
-//import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
+import { connect } from 'react-redux';
+import Pagination from './Pagination'
 
 var data = new HomeDataLayer();
 
@@ -11,31 +9,43 @@ class Home extends Component {
     constructor() {
         super()
         this.state = {
-            books: []
-           
+            books: [],
+            pageOfItems: [],
+            cartCount: 0,
+            wishCount: 0
+
         }
+        this.onChangePage = this.onChangePage.bind(this);
     }
 
-    componentDidMount() {
-        data.fetchAllBook(response => {
-            console.log('MESSAGE',response)
+    async componentDidMount() {
+        await data.fetchAllBook(response => {
             this.setState({
                 books: response
             })
+        });
+        await data.fetchAllCartBook(response => {
+            this.props.dispatch({ type: "methodCalled", payload: response.length })
+        })
+        await data.fetchAllWishlistBook(response => {
+            this.props.dispatch({ type: "wishListUpdate", payload: response.length })
         })
     }
 
-    handleClickAddToCart = (e) => {
-        data.addToCart(101, e, 1)
-        console.log("abcd", e)
+    handleClickAddToCart = async (e) => {
+        await data.addToCart(e, 1)
+        await data.fetchAllCartBook(response => {
+            this.props.dispatch({ type: "methodCalled", payload: response.length })
+        })
+    }
+
+    handleClickAddToWishlist = async (e) => {
+        await data.addToWishlist(e)
+        await data.fetchAllWishlistBook(response => {
+            this.props.dispatch({ type: "wishListUpdate", payload: response.length })
+        })
+    }
     
-    }
-
-    handleClickAddToWishlist = (e) => {
-        data.addToWishlist(101, e)
-        console.log("abcdhjh", e)
-    }
-
     handleChangeBookSorting = (e) => {
         if (e.target.value === "Price : High to Low")
             data.fetchAllBookDesc(response => {
@@ -59,9 +69,25 @@ class Home extends Component {
                 })
             })
     }
+
+    handleSearchtext = async () => {
+        await data.fetchAllSearchBook(this.props.searchText, response => {
+            this.setState({
+                books: response
+            })
+        });
+    }
+
+    onChangePage(pageOfItems) {
+        // update state with new page of items
+        this.setState({ pageOfItems: pageOfItems });
+    }
+
+
     render() {
-        let { books } = this.state
-        //console.log('bookkkkss', books)
+        if (this.props.searchText !== undefined) {
+            this.handleSearchtext()
+        }
         return (
 
             <div className='outline'>
@@ -69,42 +95,38 @@ class Home extends Component {
 
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
                     <div >
-                        <text is="x3d" style={{ marginLeft: '150px', fontSize: '25px' }}>Books <text is="x3d" style={{ fontSize: '20px', opacity: '0.5' }}>({books.length} items)</text></text>
+                        <text is="x3d" style={{ marginLeft: '150px', fontSize: '25px' }}>Books </text>
                     </div>
-                    <div  style={{ width: '30px', marginLeft: '700px' }} >
+                    <div style={{ width: '40px', marginLeft: '700px' }} >
 
 
-
-                        <TextField id="select" select style={{width:'180px',marginTop:'3px',border:'1px solid gray'}} onChange={this.handleChangeBookSorting} >
-                        {/* <MenuItem value="Sorting">
-                <em>Sort by relevance</em>
-              </MenuItem> */}
-                            <MenuItem value="Sort by relevance">Sort by relevance</MenuItem>
-                            <MenuItem value="Price : High to Low">Price : High to Low</MenuItem>
-                            <MenuItem value="Price : Low to High">Price : Low to High</MenuItem>
-                            <MenuItem value="Newest Arrivals">Newest Arrivals</MenuItem>
-                        </TextField>
+                        <select onChange={this.handleChangeBookSorting} >
+                            <option>Sort by relevance</option>
+                            <option >Price : High to Low</option>
+                            <option>Price : Low to High</option>
+                            <option>Newest Arrivals</option>
+                        </select>
 
 
                     </div>
                 </div>
 
 
-                <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginLeft: '90px', marginRight: '90px' }}>
+                <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginLeft: '150px', marginRight: '80px' }}>
 
-                    {books.map(book => (
-                        <div style={{ margin: '5px', padding: '1px' }}>
-                            <div className="book-outline"  key={book.id}>
-                            <div style={{ height: '220px', width: '250px', outlineStyle: 'groove', outlineColor: '#F5F5F5', outlineWidth: '0.1px', backgroundColor: '#F5F5F5' }}>
-                                <img style={{ width: '130px', height: '180px', marginLeft: '40px', marginTop: '20px', marginBottom: '25px' }} src={book.image} alt="" />
-                            </div>
-                                
-                                <div style={{ marginRight: '10px' }}>
-                                    <text is="x3d" style={{ width: '100px', height: '0px' }}>{book.title}</text><br></br>
+                    {this.state.pageOfItems.map(book => (
+                        <div style={{ margin: '10px', padding: '2px', width: '210px', flexWrap: 'wrap', display: 'flex' }}>
+                            <div className="book-outline" key={book.id}>
+                                <div style={{ height: '200px', width: '210px', outlineStyle: 'groove', outlineColor: '#F5F5F5', outlineWidth: '0.1px', backgroundColor: '#F5F5F5' }}>
+                                    <img style={{ height: '150px', width: '130px', marginLeft: '30px', marginTop: '20px', marginBottom: '25px', display: 'flex', flexWrap: 'wrap' }} src={book.picPath} alt="" />
+                                </div>
+
+                                <div >
+                                    <text is="x3d" style={{ width: '200px', height: '0px' }}>{book.nameOfBook}</text><br></br>
                                     <text style={{ opacity: '0.5', height: '0px', fontSize: '11px' }} > by {book.author}</text><br></br>
                                     <h9 style={{ height: '0px' }}>Rs. {book.price}</h9><br></br>
                                 </div>
-                                <div>
+                                <div style={{display:'flex', flexWrap:'wrap'}}>
 
                                     <button style={{ backgroundColor: '#A52A2A', color: 'white', width: '110px' }} onClick={() => this.handleClickAddToCart(book.id)}>ADD TO BAG</button>
                                     <button style={{ marginLeft: '3.5px', width: '80px' }} onClick={() => this.handleClickAddToWishlist(book.id)}>WISHLIST</button>
@@ -114,18 +136,24 @@ class Home extends Component {
 
                     ))}
                 </div>
+                <div>
+                    <Pagination items={this.state.books} onChangePage={this.onChangePage} />
+                </div>
 
-                <footer style={{ backgroundColor: '#660000', color: 'white', height: '60px', width: '1250px', marginTop: '10px', bottom: '0px', position: 'fixed' }}>
-                    <br></br>
-                    <text style={{ marginLeft: '351px' }}>Copyright &#169; 2020, Bookstore Private Limited. All Rights Reserved</text>
-                </footer>
+
             </div>
 
         );
     }
 
 }
-export default Home
+const mapStateToProps = (state) => ({
+    cartCount: state.cartCount,
+    wishListCount: state.wishListCount,
+    searchText: state.searchText
+});
+
+export default connect(mapStateToProps)(Home);
 
 
 

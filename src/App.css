@@ -73,7 +73,23 @@ border: 1px solid gray;
 margin-left: 10px;
 margin-right: 10px;
 }
-
+.bookCompartment {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.Book {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgb(202, 198, 198);
+  padding-right: 5px; 
+  padding-left: 5px;
+  margin: 15px;
+  width: 220px;
+}
 .books{
   display: 'flex'; 
   flex-direction: row;
@@ -346,4 +362,184 @@ margin-right: 10px;
     margin: 0 auto;
     max-width: 320px;
   }
+}
+
+
+.Main_view {
+  height: 80vh;
+  display: flex;
+  margin-left: 30%;
+  
+  color: white;
+}
+
+.App__Aside {
+  width: 50%;
+}
+
+.App_Img {
+  height: 409px;
+  width: 420px;
+  margin-left: 0%;
+  margin-top: 0%;
+  margin-bottom: 100%;
+}
+.App__Form {
+  width: 50%;
+  outline-style: groove;
+  outline-color: #F5F5F5;
+  outline-width: 0.1px;
+  background-color: 	#fbfcfd ;
+  padding: 25px 40px;
+  overflow: auto;
+}
+
+.PageSwitcher {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10%;
+}
+
+.PageSwitcher__Item {
+  background-color: #4C5D72;
+  color: #9DA6B1;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: .9em;
+  border: none;
+  outline: none;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.PageSwitcher__Item--Active {
+  background-color: #5ED0C0;
+  color: white;
+}
+
+.PageSwitcher__Item:first-child {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+.PageSwitcher__Item:last-child {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.FormCenter {
+  margin-bottom: 100px;
+}
+
+.FormTitle {
+  color: #707C8B;
+  font-weight: 300;
+  margin-bottom: 50px;
+}
+
+.FormTitle__Link_SignIn {
+  color:blue;
+  font-size: 1.7em;
+  margin: 0 125px;
+  padding-bottom: 5px;
+  
+}
+
+.FormTitle__Link_SignUp {
+  color: #707C8B;
+  font-size: 1.7em;
+  margin: 0 7px;
+  padding-bottom: 5px;
+}
+
+.FormField {
+  margin-bottom: 40px;
+}
+
+.FormField__Label {
+  display: block;
+  text-transform: uppercase;
+  font-size: .9em;
+  color: brown;
+}
+
+.FormField__Input {
+  width: 85%;
+  background-color: transparent; 
+  border: none;
+  color:1px solid #445366;
+  outline: none;
+  border-bottom: 1px solid #445366;
+  font-size: 1em;
+  font-weight: 300;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+
+.FormField__Input::placeholder {
+  color: #616E7F;
+}
+
+.FormField__Button {
+  background-color: blue;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  font-size: .5cm;
+  font-weight: 500;
+  width: 150px;
+  height: 43px;
+  
+}
+
+.FormField__Link {
+  color: #66707D;
+  text-decoration: none;
+  display: inline-block;
+  border-bottom: 1.5px solid #225E62;
+  padding-bottom: 5px;
+  margin-left: 10px;
+}
+
+.FormField__CheckboxLabel {
+  color: #646F7D;
+  font-size: .9em; 
+}
+
+.CheckboxLabel {
+  color: brown;
+  font-size: .9em;
+}
+
+.FormField__Admin {
+  position: relative;
+  top: 1.5px;
+}
+
+.FormField__User {
+  /*position: relative;*/
+  top: 1.5px;
+  margin-left: 20px;
+}
+
+.FormField__TermsLink {
+  color: white;
+  border-bottom: 1px solid #199087;
+  text-decoration: none;
+  display: inline-block;
+  padding-bottom: 2px;
+  margin-left: 5px;
+}
+
+.FormField_Create_account {
+  background-color: #66707D;;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  font-size: .8em;
+  font-weight: 500;
+  width: 150px;
+  height: 43px;
+  margin-left: 30px;
 }
